@@ -34,12 +34,9 @@ xok <- cbind(subject,xok)
 
 # From the data set in step 4, creates a second, independent tidy data set 
 # with the average of each variable for each activity and each subject.
-install.packages("dplyr")
-library(dplyr)
-avg_by_act_sub <- xok %>% 
-  group_by(Subject,Activity) %>% 
-  summarise_each(funs(mean))
-
 library(reshape2)
-avg_by_act_subMelt <- melt(xok,id=c("Subject","Activity"))
-avg_by_act_sub <- dcast(avg_by_act_subMelt,Subject + Activity  ~ variable, fun=mean)
+avg_by_sub_act_subMelt <- melt(xok,id=c("Subject","Activity"))
+avg_by_sub_act <- dcast(avg_by_sub_act_subMelt,Subject + Activity  ~ variable, fun=mean)
+
+write.table(avg_by_sub_act, file="avg_by_sub_act.csv", sep=",",row.name=FALSE)
+write.table(avg_by_sub_act, file="avg_by_sub_act.txt",row.name=FALSE)
