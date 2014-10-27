@@ -38,5 +38,4 @@ library(reshape2)
 avg_by_sub_act_subMelt <- melt(xok,id=c("Subject","Activity"))
 avg_by_sub_act <- dcast(avg_by_sub_act_subMelt,Subject + Activity  ~ variable, fun=mean)
 
-write.table(avg_by_sub_act, file="avg_by_sub_act.csv", sep=",",row.name=FALSE)
 write.table(avg_by_sub_act, file="avg_by_sub_act.txt",row.name=FALSE)
